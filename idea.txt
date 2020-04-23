@@ -1,0 +1,21 @@
+
+Goal: 
+1) Don't go beyond the wall
+2) Don't collide its own body
+3) Don't collide with other snake body(except head)
+4) Eat food to survive
+------------------------------------------------------
+
+Implementation idea
+1)Create adjacency matrix of n row by n colmun. and always update this in move function.
+=> By doing this we can see the available space
+
+=>entry of matrix is:
+	Available space->0
+	Body of snake->1
+	Food->2
+
+2)Find a shortest path to food by BFS.
+
+
+

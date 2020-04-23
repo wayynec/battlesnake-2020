@@ -44,17 +44,24 @@ class Battlesnake(object):
         possible_moves = ["up", "down", "left", "right"]
         move = random.choice(possible_moves)
         
-        #add my code------------------
+        #add my code--------------------------------------------
         
         #board info
         height=data["board"]["height"]-1
         width=data["board"]["width"]-1
         
+        #food info
         food=[]
         food.append(data["board"]["food"][0]["x"])
         food.append(data["board"]["food"][0]["y"])
         print(food)
-        head=data["you"]["body"][0]
+        
+        #body info
+        head=data["you"]["body"][0] #head=[x,y]
+        
+        length=len(data["you"]["body"]) #to obtain tail info
+        
+        tail=data["you"]["body"][length]
         
         
         
@@ -75,10 +82,7 @@ class Battlesnake(object):
         
         
         
-        
-        
-        
-        #end of my code------------------
+        #end of my code--------------------------------------------
 
         print(f"MOVE: {move}")
         return {"move": move}
