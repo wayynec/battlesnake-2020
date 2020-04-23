@@ -83,7 +83,6 @@ class Battlesnake(object):
         
         # Input food location into matrix
         for i in range(len(data["board"]["food"])): #food[i]=[x,y]
-            food = []
             x = data["board"]["food"][i]["x"]
             y = data["board"]["food"][i]["y"]
             food.append((y, x))
