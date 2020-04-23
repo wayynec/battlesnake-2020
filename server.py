@@ -2,7 +2,10 @@ import os
 import random
 import cherrypy
 
+import math
 import time #added
+
+
 """
 This is a simple Battlesnake server written in Python.
 For instructions see https://github.com/BattlesnakeOfficial/starter-snake-python/README.md
@@ -80,8 +83,11 @@ class Battlesnake(object):
         
         # Input food location into matrix
         for i in range(len(data["board"]["food"])): #food[i]=[x,y]
+            food = []
             x = data["board"]["food"][i]["x"]
             y = data["board"]["food"][i]["y"]
+            food.append((y, x))
+
             matrix[y][x] = 2
 
         #get head
@@ -89,14 +95,24 @@ class Battlesnake(object):
         y = data["you"]["body"][0]["y"]
         matrix[y][x] = 3
         head=[]
-        head.append(y)
-        head.append(x) #now, head=[row, col]
+        head.append((y, x))
+        #head.append(x) #now, head=[row, col]
+        shortest = 100
+        s_food = None
+        for i in food:
+            path = math.sqrt(((head[1] - food[i][1])**2) - (((head[2]) - food[i][2])**2))
+            if shortest > path:
+                shortest = path
+                s_food = i
+
+
 
         #debug
         print("------matrix------")
         for line in matrix:
             print(line)
-        
+
+
         """
         if(head["x"]==width):#if x cordinate is width
             possible_moves2 = ["up", "down", "left"]
