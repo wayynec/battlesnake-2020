@@ -60,13 +60,14 @@ class Battlesnake(object):
         food.append(data["board"]["food"][0]["x"])
         food.append(data["board"]["food"][0]["y"])
         print(food)
-        """
+        
         
         #body info
         head=data["you"]["body"][0] #head=[x,y]
         
         length=len(data["you"]["body"]) #to obtain tail info
         tail=data["you"]["body"][length]
+        """
         
         #Create Adjacency Matrix
         matrix=[0]*width
