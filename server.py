@@ -67,10 +67,7 @@ class Battlesnake(object):
             y = data["you"]["body"][i]["y"]
             matrix[y][x] = 1
         
-        #get head
-        x = data["you"]["body"][0]["x"]
-        y = data["you"]["body"][0]["y"]
-        matrix[y][x] = 3
+        
         
         # Input "other" snakes location into matrix
         for i in range(len(data["board"]["snakes"])): #body[i]=[x,y]
@@ -86,7 +83,12 @@ class Battlesnake(object):
             x = data["board"]["food"][i]["x"]
             y = data["board"]["food"][i]["y"]
             matrix[y][x] = 2
-        
+
+        #get head
+        x = data["you"]["body"][0]["x"]
+        y = data["you"]["body"][0]["y"]
+        matrix[y][x] = 3
+
         #debug
         print("------matrix------")
         for line in matrix:
