@@ -63,6 +63,12 @@ class Battlesnake(object):
             y = data["you"]["body"][i]["y"]
             matrix[y][x] = 1
         
+        # Input "other" snakes location into matrix
+        for i in range(len(data["board"]["snakes"])): #body[i]=[x,y]
+            x = data["board"]["snakes"][i]["x"]
+            y = data["board"]["snakes"][i]["y"]
+            matrix[y][x] = 1
+        
         # Input food location into matrix
         for i in range(len(data["board"]["food"])): #food[i]=[x,y]
             x = data["board"]["food"][i]["x"]
