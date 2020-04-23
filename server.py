@@ -133,7 +133,7 @@ class Battlesnake(object):
                     possible_moves.append("right")
                 elif matrix[head[0]][head[1] - 1] != 1 and head[1]-1 != 0:
                     possible_moves.append("left")
-                elif matrix[head[0]+1][head[1]] != 1 and head[0]+1 != 0:
+                elif matrix[head[0]+1][head[1]] != 1 and head[0]+1 != height:
                     possible_moves.append("down")
                 elif matrix[head[0]-1][head[1]] != 1 and head[0]-1 != 0:
                     possible_moves.append("up")
