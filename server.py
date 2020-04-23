@@ -60,11 +60,21 @@ class Battlesnake(object):
         head=data["you"]["body"][0] #head=[x,y]
         
         length=len(data["you"]["body"]) #to obtain tail info
-        
         tail=data["you"]["body"][length]
         
+        #Create Adjacency Matrix
+        matrix=[0]*width
+        for i in range(width):
+            matrix[i]=[0]*height
+        
+        # Input my snake location into matrix
+        for i in range(len(data["you"]["body"])): #body[i]=[x,y]
+            x = data["you"]["body"][i]["x"]
+            y = data["you"]["body"][i]["y"]
+            matrix[x][y] = 1
         
         
+        """
         if(head["x"]==width):#if x cordinate is width
             possible_moves2 = ["up", "down", "left"]
             move = random.choice(possible_moves2)
@@ -77,6 +87,7 @@ class Battlesnake(object):
         elif(head["y"]==0):#if x cordinate is left most
             possible_moves2 = ["down", "down", "right"]
             move = random.choice(possible_moves2)
+        """
 
         print(head)
         
