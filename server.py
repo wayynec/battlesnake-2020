@@ -1,8 +1,8 @@
 import os
 import random
-
 import cherrypy
 
+import time #added
 """
 This is a simple Battlesnake server written in Python.
 For instructions see https://github.com/BattlesnakeOfficial/starter-snake-python/README.md
@@ -45,29 +45,12 @@ class Battlesnake(object):
         move = random.choice(possible_moves)
         
 
-        #add my code------------------
-
         #add my code--------------------------------------------
+        start_time = time.time()
         
         #board info
         height=data["board"]["height"]-1
         width=data["board"]["width"]-1
-        
-        """
-        #food info
-        food=[]
-        
-        food.append(data["board"]["food"][0]["x"])
-        food.append(data["board"]["food"][0]["y"])
-        print(food)
-        
-        
-        #body info
-        head=data["you"]["body"][0] #head=[x,y]
-        
-        length=len(data["you"]["body"]) #to obtain tail info
-        tail=data["you"]["body"][length]
-        """
         
         #Create Adjacency Matrix
         matrix=[0]*width
@@ -78,11 +61,11 @@ class Battlesnake(object):
         for i in range(len(data["you"]["body"])): #body[i]=[x,y]
             x = data["you"]["body"][i]["x"]
             y = data["you"]["body"][i]["y"]
-            matrix[x][y] = 1
+            matrix[y][x] = 1
         
         # Input food location into matrix
         for i in range(len(data["board"]["food"])): #food[i]=[x,y]
-            x = data["board"]["food"][i]["x"]
+            x = data["board"]["food"][i]["x"] - 1
             y = data["board"]["food"][i]["y"]
             matrix[y][x] = 2
         
@@ -91,7 +74,7 @@ class Battlesnake(object):
         for line in matrix:
             print(line)
         
-        
+        """
         if(head["x"]==width):#if x cordinate is width
             possible_moves2 = ["up", "down", "left"]
             move = random.choice(possible_moves2)
@@ -104,12 +87,12 @@ class Battlesnake(object):
         elif(head["y"]==0):#if x cordinate is left most
             possible_moves2 = ["down", "down", "right"]
             move = random.choice(possible_moves2)
-        
+        """
 
         print("head", head)
         
         
-        
+        print("--- %s seconds ---" % (time.time() - start_time))
         #end of my code--------------------------------------------
 
         print(f"MOVE: {move}")
