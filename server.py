@@ -65,7 +65,7 @@ class Battlesnake(object):
         
         # Input food location into matrix
         for i in range(len(data["board"]["food"])): #food[i]=[x,y]
-            x = data["board"]["food"][i]["x"] 
+            x = data["board"]["food"][i]["x"]
             y = data["board"]["food"][i]["y"]
             matrix[y][x] = 2
         
@@ -89,7 +89,7 @@ class Battlesnake(object):
             move = random.choice(possible_moves2)
         """
 
-        print("head", head)
+        
         
         
         print("--- %s seconds ---" % (time.time() - start_time))
