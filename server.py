@@ -94,18 +94,18 @@ class Battlesnake(object):
         x = data["you"]["body"][0]["x"]
         y = data["you"]["body"][0]["y"]
         matrix[y][x] = 3
-        head=[]
-        head.append((y, x))
+        head = (y, x)
+
         #head.append(x) #now, head=[row, col]
         shortest = 100
         s_food = None
         for i in food:
-            path = math.sqrt(((head[0] - food[i][0])**2) - (((head[1]) - food[i][1])**2))
+            path = math.sqrt(((head[0] - food[i][0])**2) + (((head[1]) - food[i][1])**2))
             if shortest > path:
                 shortest = path
-                s_food = i
+                s_food = food[i]
 
-        print("s_food =", i, "shortest path = ", shortest)
+        print("s_food =", s_food, "shortest path = ", shortest)
 
 
 
