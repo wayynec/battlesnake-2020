@@ -17,5 +17,11 @@ Implementation idea
 
 2)Find a shortest path to food by BFS.
 
+----------------------------------------------------------
+If we have more time...
+3)Eat other's head if our body is bigger
+=>3-1.Get info of other snakes location & length.
+=>3-2.Compare with our length. 
+=>3-3.If our length is longer, change the enemy's head coordinate[x,y] into 0. (from 1).
 
 

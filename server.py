@@ -58,11 +58,14 @@ class Battlesnake(object):
         height=data["board"]["height"]-1
         width=data["board"]["width"]-1
         
+        """
         #food info
         food=[]
+        
         food.append(data["board"]["food"][0]["x"])
         food.append(data["board"]["food"][0]["y"])
         print(food)
+        """
         
         #body info
         head=data["you"]["body"][0] #head=[x,y]
@@ -81,6 +84,15 @@ class Battlesnake(object):
             y = data["you"]["body"][i]["y"]
             matrix[x][y] = 1
         
+        # Input food location into matrix
+        for i in range(len(data["board"]["food"])): #food[i]=[x,y]
+            x = data["board"]["food"][i]["x"]
+            y = data["board"]["food"][i]["y"]
+            matrix[x][y] = 2
+        
+        #debug
+        for line in matrix:
+            print(line)
         
         """
         if(head["x"]==width):#if x cordinate is width
