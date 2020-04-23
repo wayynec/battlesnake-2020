@@ -45,7 +45,11 @@ class Battlesnake(object):
         move = random.choice(possible_moves)
         
         #add my code------------------
-        
+        #comment by victor
+        # comment by victor
+        # comment by victor
+        # comment by victor
+        # comment by victor
         #board info
         height=data["board"]["height"]-1
         width=data["board"]["width"]-1
