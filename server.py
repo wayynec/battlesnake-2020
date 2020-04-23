@@ -88,6 +88,9 @@ class Battlesnake(object):
         x = data["you"]["body"][0]["x"]
         y = data["you"]["body"][0]["y"]
         matrix[y][x] = 3
+        head=[]
+        head.append(y)
+        head.append(x) #now, head=[row, col]
 
         #debug
         print("------matrix------")
