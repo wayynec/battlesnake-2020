@@ -8,6 +8,8 @@ This is a simple Battlesnake server written in Python.
 For instructions see https://github.com/BattlesnakeOfficial/starter-snake-python/README.md
 """
 
+# Rules: 0=available space, 1=snake body, 2=Food, 3=head
+
 
 class Battlesnake(object):
     @cherrypy.expose
@@ -57,8 +59,13 @@ class Battlesnake(object):
         for i in range(width):
             matrix[i]=[0]*(height)
         
+        #get head
+        x = data["you"]["body"][0]["x"]
+        y = data["you"]["body"][0]["y"]
+        matrix[y][x] = 3
+        
         # Input my snake location into matrix
-        for i in range(len(data["you"]["body"])): #body[i]=[x,y]
+        for i in range(len(data["you"]["body"])): #body[i]=head, body, or tail...
             x = data["you"]["body"][i]["x"]
             y = data["you"]["body"][i]["y"]
             matrix[y][x] = 1
