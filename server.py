@@ -105,6 +105,8 @@ class Battlesnake(object):
                 shortest = path
                 s_food = i
 
+        print("s_food =", i, "shortest path = ", shortest)
+
 
 
         #debug
