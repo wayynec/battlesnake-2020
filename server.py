@@ -99,8 +99,8 @@ class Battlesnake(object):
         #head.append(x) #now, head=[row, col]
         shortest = 100
         s_food = None
-        for i in food:
-            path = math.sqrt(((head[0] - food[i][0])**2) + (((head[1]) - food[i][1])**2))
+        for item in food: #items are tuples
+            path = math.sqrt(((head[0] - item[0])**2) + (((head[1]) - item[1])**2))
             if shortest > path:
                 shortest = path
                 s_food = food[i]
