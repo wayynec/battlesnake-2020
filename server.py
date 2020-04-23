@@ -116,15 +116,15 @@ class Battlesnake(object):
 
         # s_food =(y,x)
 
-        if (head[1] < s_food[1] and (matrix[head[0]][head[1]+1] == 0)):  # that means head is left side of food.
+        if (head[1] < s_food[1] and (matrix[head[0]][head[1]+1] == 0 or matrix[head[0]][head[1]+1] == 2)):  # that means head is left side of food.
             move = "right"
-        elif (head[1] > s_food[1] and (matrix[head[0]][head[1]-1] == 0)):  # that means head is left side of food.
+        elif (head[1] > s_food[1] and (matrix[head[0]][head[1]-1] == 0 or matrix[head[0]][head[1]-1] == 2)):  # that means head is left side of food.
             move = "left"
         else:  # that means head and food are in the same column!
 
-            if (head[0] < s_food[0] and (matrix[head[0]+1][head[1]] == 0)):  # that means hard is above the food.
+            if (head[0] < s_food[0] and (matrix[head[0]+1][head[1]] == 0 or matrix[head[0]+1][head[1]] == 2)):  # that means hard is above the food.
                 move = "down"
-            elif (head[0] > s_food[0] and (matrix[head[0]-1][head[1]] == 0)):  # that means hard is below the food.
+            elif (head[0] > s_food[0] and (matrix[head[0]-1][head[1]] == 0 or matrix[head[0]-1][head[1]] == 2)):  # that means hard is below the food.
                 move = "up"
 
         
