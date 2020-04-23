@@ -47,9 +47,10 @@ class Battlesnake(object):
         #add my code------------------
         
         #board info
-        height=data["board"][0]
-        width=data["board"][1]
-        
+        height=data["board"]["height"]-1
+        width=data["board"]["width"]-1
+        print(height)
+        print(width)
         head=data["you"]["body"][0]
         
         if(head["x"]==width):#if x cordinate is width
