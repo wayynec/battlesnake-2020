@@ -84,7 +84,7 @@ class Battlesnake(object):
         for i in range(len(data["board"]["food"])): #food[i]=[x,y]
             x = data["board"]["food"][i]["x"]
             y = data["board"]["food"][i]["y"]
-            matrix[x][y] = 2
+            matrix[y][x] = 2
         
         #debug
         print("------matrix------")
