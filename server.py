@@ -49,13 +49,13 @@ class Battlesnake(object):
         start_time = time.time()
         
         #board info
-        height=data["board"]["height"]-1
-        width=data["board"]["width"]-1
+        height=data["board"]["height"]
+        width=data["board"]["width"]
         
         #Create Adjacency Matrix
-        matrix=[0]*width
+        matrix=[0]*(width)
         for i in range(width):
-            matrix[i]=[0]*height
+            matrix[i]=[0]*(height)
         
         # Input my snake location into matrix
         for i in range(len(data["you"]["body"])): #body[i]=[x,y]
@@ -67,7 +67,7 @@ class Battlesnake(object):
         for i in range(len(data["board"]["food"])): #food[i]=[x,y]
             x = data["board"]["food"][i]["x"]
             y = data["board"]["food"][i]["y"]
-            matrix[y][x] = 2
+            matrix[y][x-1] = 2
         
         #debug
         print("------matrix------")
