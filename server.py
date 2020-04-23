@@ -100,10 +100,12 @@ class Battlesnake(object):
         shortest = 100
         s_food = None
         for item in food: #items are tuples
+            print(item)
             path = abs(head[0] - item[0]) + abs(head[1] - item[1])
             if shortest > path:
                 shortest = path
                 s_food = item
+                print(s_food)
 
         print("s_food =", s_food, "shortest path = ", shortest)
 
