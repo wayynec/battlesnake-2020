@@ -51,8 +51,8 @@ class Battlesnake(object):
         width=data["board"]["width"]-1
         
         food=[]
-        food.append(data["board"]["food"]["0"]["x"])
-        food.append(data["board"]["food"]["0"]["y"])
+        food.append(data["board"]["food"][0]["x"])
+        food.append(data["board"]["food"][0]["y"])
         print(food)
         head=data["you"]["body"][0]
         
