@@ -46,11 +46,6 @@ class Battlesnake(object):
         
 
         #add my code------------------
-        #comment by victor
-        # comment by victor
-        # comment by victor
-        # comment by victor
-        # comment by victor
 
         #add my code--------------------------------------------
         
@@ -91,10 +86,11 @@ class Battlesnake(object):
             matrix[x][y] = 2
         
         #debug
+        print("------matrix------")
         for line in matrix:
             print(line)
         
-        """
+        
         if(head["x"]==width):#if x cordinate is width
             possible_moves2 = ["up", "down", "left"]
             move = random.choice(possible_moves2)
@@ -107,9 +103,9 @@ class Battlesnake(object):
         elif(head["y"]==0):#if x cordinate is left most
             possible_moves2 = ["down", "down", "right"]
             move = random.choice(possible_moves2)
-        """
+        
 
-        print(head)
+        print("head", head)
         
         
         
