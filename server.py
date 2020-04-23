@@ -49,9 +49,12 @@ class Battlesnake(object):
         #board info
         height=data["board"]["height"]-1
         width=data["board"]["width"]-1
-        print(height)
-        print(width)
+        
+        food=[data["board"]["food"]["0"]["x"],  data["board"]["food"]["0"]["y"]]
+        print(food)
         head=data["you"]["body"][0]
+        
+        
         
         if(head["x"]==width):#if x cordinate is width
             possible_moves2 = ["up", "down", "left"]
