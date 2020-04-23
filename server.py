@@ -51,13 +51,14 @@ class Battlesnake(object):
         width=data["board"][1]
         
         head=data["you"]["body"][0]
+        
         if(head["x"]==width):#if x cordinate is width
             possible_moves2 = ["up", "down", "left"]
             move = random.choice(possible_moves2)
         elif(head["x"]==0):#if x cordinate is left most
             possible_moves2 = ["up", "down", "right"]
             move = random.choice(possible_moves2)
-        elif(head["y"]==height)
+        elif(head["y"]==height):
             possible_moves2 = ["up", "left", "right"]
             move = random.choice(possible_moves2)
         elif(head["y"]==0):#if x cordinate is left most
