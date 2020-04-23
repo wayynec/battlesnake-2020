@@ -107,28 +107,23 @@ class Battlesnake(object):
 
         print("s_food =", s_food, "shortest path = ", shortest)
 
-
-
         #debug
         print("------matrix------")
         for line in matrix:
             print(line)
 
+        # s_food =(y,x)
 
-        """
-        if(head["x"]==width):#if x cordinate is width
-            possible_moves2 = ["up", "down", "left"]
-            move = random.choice(possible_moves2)
-        elif(head["x"]==0):#if x cordinate is left most
-            possible_moves2 = ["up", "down", "right"]
-            move = random.choice(possible_moves2)
-        elif(head["y"]==height):
-            possible_moves2 = ["up", "left", "right"]
-            move = random.choice(possible_moves2)
-        elif(head["y"]==0):#if x cordinate is left most
-            possible_moves2 = ["down", "down", "right"]
-            move = random.choice(possible_moves2)
-        """
+        if (head[0] < s_food[0]):  # that means head is left side of food.
+            move = "right"
+        elif (head[0] > s_food[0]):  # that means head is left side of food.
+            move = "left"
+        else:  # that means head and food are in the same column!
+
+            if (head[1] < s_food[1]):  # that means hard is above the food.
+                move = "down"
+            elif (head[1] > s_food[1]):  # that means hard is below the food.
+                move = "up"
 
         
         
