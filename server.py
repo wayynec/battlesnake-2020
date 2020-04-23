@@ -115,6 +115,7 @@ class Battlesnake(object):
             print(line)
 
         # s_food =(y,x)
+#head(y,x)
 
         if (head[1] < s_food[1] and (matrix[head[0]][head[1]+1] != 1)):  # that means head is left side of food.
             move = "right"
@@ -132,9 +133,9 @@ class Battlesnake(object):
                     possible_moves.append("right")
                 elif matrix[head[0] + 1][head[1]] != 1 and head[1]-1 != 0:
                     possible_moves.append("left")
-
-                    #possible_moves = ["up", "down", "left", "right"]
-                    #move = random.choice(possible_moves)
+                move = random.choice(possible_moves)
+#possible_moves = ["up", "down", "left", "right"]
+#move = random.choice(possible_moves)
 #height=data["board"]["height"]
 #width=data["board"]["width"]
         
