@@ -103,7 +103,7 @@ class Battlesnake(object):
             path = math.sqrt(((head[0] - item[0])**2) + (((head[1]) - item[1])**2))
             if shortest > path:
                 shortest = path
-                s_food = food[i]
+                s_food = item
 
         print("s_food =", s_food, "shortest path = ", shortest)
 
