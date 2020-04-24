@@ -95,7 +95,14 @@ class Battlesnake(object):
         list_ratio.sort()
 
         #debug
-        print("best ratio is:", max(list_ratio))
+        if(max(list_ratio)==ratio1):
+            print("best ratio is:", "ratio1")
+        if(max(list_ratio)==ratio2):
+            print("best ratio is:", "ratio2")
+        if(max(list_ratio)==ratio3):
+            print("best ratio is:", "ratio3")
+        if(max(list_ratio)==ratio4):
+            print("best ratio is:", "ratio4")
         #compute distance of each possible moves?
     
     
