@@ -160,22 +160,25 @@ class Battlesnake(object):
                     possible_moves.append("up")
             #four corners
             if head[1] == 0 and head[0] == 0:
+                print("00000000000")
                 if matrix[head[0]][head[1]+1] == 0:
                     possible_move.append("down")
                 else:
                     possible_moves.append("right")
             if head[1] == width-1 and head[0] == 0:
-                print("123")
+                print("1111111")
                 if matrix[head[0]][head[1]-1] == 0:
                     possible_move.append("left")
                 else:
                     possible_moves.append("down")
             if head[0] == height-1 and head[1] == 0:
+                print("22222222")
                 if matrix[head[0]-1][head[1]] == 0:
                     possible_move.append("up")
                 else:
                     possible_move.append("right")
             if head[0] == height-1 and head[1] == width-1:
+                print("3333333333")
                 if matrix[head[0]-1][head[1]] == 0:
                     possible_move.append("up")
                 else:
