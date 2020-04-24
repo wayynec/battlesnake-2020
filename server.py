@@ -37,6 +37,7 @@ class Battlesnake(object):
         return {"color": "#736CCB", "headType": "silly", "tailType": "bolt"}
 
 
+
     #---------------------------------------------------------------------
     #Function priority moves: Retruns priority movement
     def priority(self, matrix, head, possible_moves, height, width):
@@ -66,7 +67,23 @@ class Battlesnake(object):
 
         # match possible moves and priority moves.
 
-        combined_move = list( set(possible_moves) & set(priority_moves) )
+        #avoid nessy
+        avoid =[]
+        if matrix[head[0] - 1][head[1] + 1] == 4:  # row-1, col+1
+            avoid.append("up")
+            avoid.append("right")
+        if matrix[head[0] - 1][head[1] - 1] == 4:
+            avoid.append("top")
+            avoid.append("left")
+        if matrix[head[0] + 1][head[1] - 1] == 4:
+            avoid.append("left")
+            avoid.append("down")
+        if matrix[head[0] + 1][head[1] + 1] == 4:
+            avoid.append("right")
+            avoid.append("down")
+
+        combined_move = list(set(possible_moves) & set(priority_moves))
+        combined_move.remove(avoid)
 
         
         # choose the best move from combined_move
@@ -205,10 +222,10 @@ class Battlesnake(object):
                 x = data["board"]["snakes"][i]["body"][j]["x"]
                 y = data["board"]["snakes"][i]["body"][j]["y"]
 
-                if (j == 0 and my_size <= size):  # j == 0 means head
+                if j == 0 and my_size <= size:  # j == 0 means head
                     matrix[y][x] = 4
 
-                elif( j==0 and my_size > size): # j == 0 means head
+                elif j==0 and my_size > size: # j == 0 means head
                     matrix[y][x] = 5
                 
 
@@ -295,7 +312,7 @@ class Battlesnake(object):
 
             if head[1] + 1 <= width - 1 and matrix[head[0]][head[1] + 1] not in [1, 4]:
                 possible_moves.append("right")
-            print("possible_moves=",possible_moves)
+            print("possible_moves=", possible_moves)
 
 
             move = self.priority(matrix, head, possible_moves, height, width)
