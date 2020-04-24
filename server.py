@@ -39,7 +39,7 @@ class Battlesnake(object):
     
     #---------------------------------------------------------------------
     #Function priority moves: Retruns priority movement
-    def priority(matrix, head, possible_moves):
+    def priority(self, matrix, head, possible_moves):
         priority_moves = ["up", "down", "left", "right"]
         # check if the distance between my head and enemy's head (=4) is =< 2
         
