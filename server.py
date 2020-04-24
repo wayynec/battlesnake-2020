@@ -97,6 +97,9 @@ class Battlesnake(object):
 
         #get health
         h = data["you"]["health"]
+        load_factor = 0  #load factor = 0 when health > 50
+        if h < 50:
+            load_factor = 1
         #head.append(x) #now, head=[row, col]
         shortest = 100
         s_food = None
@@ -109,7 +112,8 @@ class Battlesnake(object):
         food.sort(key=lambda x: (x[2])) #sort the array using food[2](shortest path)
         #print("s_food =", s_food, "shortest path = ", shortest)
         print(food)
-        print(h)
+        print("health: ", h) #print health
+        print("load factor: ", load_factor)
 
         #debug
         print("------matrix------")
