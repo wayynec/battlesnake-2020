@@ -100,7 +100,7 @@ class Battlesnake(object):
 
         #avoid eating food when health > 50
         if len(combined_move) > 1:  # at least we have two choice.
-            print("combined move in avoid eating food: ", combined_move)
+            print("combined move in avoid eating food: ", combined_move, "len: ", len(combined_move))
             for i in range(len(combined_move)):
                 if combined_move[i] == "up":
                     if head[0] - 1 >= 0 and matrix[head[0] - 1][head[1]] == 2:
