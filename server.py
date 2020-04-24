@@ -86,7 +86,7 @@ class Battlesnake(object):
         for i in range(len(data["board"]["food"])): #food[i]=[x,y]
             x = data["board"]["food"][i]["x"]
             y = data["board"]["food"][i]["y"]
-            food.append((y, x))
+            food.append([y, x])
             matrix[y][x] = 2
 
         #get head
