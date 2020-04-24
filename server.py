@@ -223,16 +223,16 @@ class Battlesnake(object):
                 else:
                     possible_moves.append("left")
             """
-            if head[0] - 1 >= 0 and matrix[head[0]-1][head[1]] is not in [1,4]:
+            if head[0] - 1 >= 0 and matrix[head[0]-1][head[1]] not in [1,4]:
                 possible_moves.append("up")
 
-            if head[0] + 1 <= height - 1 and matrix[head[0]+1][head[1]] is not in [1,4]:
+            if head[0] + 1 <= height - 1 and matrix[head[0]+1][head[1]] not in [1,4]:
                 possible_moves.append("down")
 
-            if head[1] - 1 >= 0 and matrix[head[0]][head[1] - 1] is not in [1,4]:
+            if head[1] - 1 >= 0 and matrix[head[0]][head[1] - 1] not in [1,4]:
                 possible_moves.append("left")
 
-            if head[1] + 1 <= width - 1 and matrix[head[0]][head[1] + 1] is not in [1,4]:
+            if head[1] + 1 <= width - 1 and matrix[head[0]][head[1] + 1] not in [1,4]:
                 possible_moves.append("right")
             print(possible_moves)
 
