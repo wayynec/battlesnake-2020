@@ -7,7 +7,7 @@ Goal:
 ------------------------------------------------------
 
 Implementation idea
-1)Create adjacency matrix of n row by n colmun. and always update this in move function.
+Step 1)Create adjacency matrix of n row by n colmun. and always update this in move function.
 => By doing this we can see the available space
 
 =>entry of matrix is:
@@ -15,7 +15,59 @@ Implementation idea
 	Body of snake->1
 	Food->2
 
-2)Find a shortest path to food by BFS.
+Step 2) calculate distance between food(i) and head
+dist(food(i)-head)= food(i)["x"] - head[0]  +  food(i)["y"] - head[1]
+
+Step3) Find minimum distance
+=> min =0
+for i in food:
+    if min < dist(food(i)-head):
+        min=dist(food(i)-head)
+
+
+Step 4) Move
+
+#s_food =(y,x)
+
+if(head[0] < s_food[0] ): # that means head is left side of food.
+    move="right"
+elif(head[0] > s_food[0]): # that means head is left side of food.
+    move="left"
+else:#that means head and food are in the same column!
+
+    if(head[1] < s_food[1]): #that means hard is above the food.
+        move="down"
+    elif(head[1] > s_food[1]): #that means hard is below the food.
+        move="up"
+----------------------------------------------------------
+ToDo
+
+#1: Control load factor(1 food to restore the health, one turn is -1)
+create a flag for load factor, load factor = 0 when health > 50
+=> load factor of health = 50. 
+If health is above, Penelope randomly moves. 
+=>Create possible moves array, and pick randomly.
+
+Case1: Want to eat food. (Use shortest path greedy algorithm.)
+=>add a situation if other snake head is next to us. 
+
+    Make a list food  ={ [y,x,distance]...etc }
+    Case1-a) If enemy is bigger, go eat second food. => Sort food array by "food.sort(distance)"
+             Then s_food=food[0] and second food is food[1].
+
+    Case1-b) If Penelope is bigger, then go eat food.
+
+
+Case2: Want to survive efficiently (with probability?) ...avoid enemy and food. 
+=>Only move available space.
+=> Avoid a situation where penelope can go nowhere.
+=> Partition 11x11 matrix into 4 part. 
+   In each sub matrix, compute ratio of 1/size of sub matrix.
+   Calculate minimum ration sub matrix, and penelope goes into the sub matrix.
+  
+   If penelope is already in the minimum ratio sub matrix, then moves to the second lowest matrix.
+
+
 
 ----------------------------------------------------------
 If we have more time...
