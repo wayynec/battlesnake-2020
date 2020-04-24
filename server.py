@@ -60,7 +60,7 @@ class Battlesnake(object):
         combined_move = list( set(possible_moves) & set(priority_moves) )
         move =random.choice(combined_move)
         
-    return move
+        return move
     
     #---------------------------------------------------------------------
 
