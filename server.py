@@ -67,7 +67,7 @@ class Battlesnake(object):
 
         # match possible moves and priority moves.
 
-        #avoid nessy
+        #avoid nessy, blind spot
         avoid =[]
         if head[1]+1 <= width-1 and head[0] - 1 >= 0 and matrix[head[0] - 1][head[1] + 1] == 4:  # row-1, col+1
             #avoid.append("up")
@@ -98,6 +98,24 @@ class Battlesnake(object):
         if (len(list(set(combined_move) & set(avoid))) > 0):  # then
             combined_move = list(set(combined_move) & set(avoid))
 
+        #avoid eating food when health > 50
+        if len(combined_move) > 1:  # at least we have two choice.
+            for i in range(len(combined_move)):
+                if combined_move[i] == "up":
+                    if head[0] - 1 >= 0 and matrix[head[0] - 1][head[1]] == 2:
+                        combined_move.remove("up")
+
+                elif combined_move[i] == "down":
+                    if head[0] + 1 <= height - 1 and matrix[head[0] + 1][head[1]] == 2:
+                        combined_move.remove("down")
+
+                elif combined_move[i] == "right":
+                    if head[1] + 1 <= width - 1 and matrix[head[0]][head[1] + 1] == 2:
+                        combined_move.remove("right")
+
+                elif combined_move[i] == "left":
+                    if head[1] - 1 <= 0 and matrix[head[0]][head[1] - 1] == 2:
+                        combined_move.remove("left")
         
         # choose the best move from combined_move
         number_of_0 = 0
