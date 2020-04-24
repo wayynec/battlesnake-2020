@@ -107,7 +107,7 @@ class Battlesnake(object):
         food.sort(key=lambda x: (x[2])) #sort the array using food[2](shortest path)
         #print("s_food =", s_food, "shortest path = ", shortest)
         print(food)
-        
+
         #debug
         print("------matrix------")
         for line in matrix:
@@ -115,6 +115,28 @@ class Battlesnake(object):
 
         # s_food =(y,x)
 #head(y,x)
+        if (head[1] < food[0][1] and (matrix[head[0]][head[1] + 1] != 1)):  # that means head is left side of food.
+            move = "right"
+        elif (head[1] > food[0][1] and (matrix[head[0]][head[1] - 1] != 1)):  # that means head is left side of food.
+            move = "left"
+        else:  # that means head and food are in the same column!
+
+            if (head[0] < food[0][0] and (matrix[head[0] + 1][head[1]] != 1)):  # that means hard is above the food.
+                move = "down"
+            elif (head[0] > food[0][0] and (matrix[head[0] - 1][head[1]] != 1)):  # that means hard is below the food.
+                move = "up"
+            else:
+                possible_moves = []
+                if matrix[head[0]][head[1] + 1] != 1 and head[1] + 1 != width:
+                    possible_moves.append("right")
+                elif matrix[head[0]][head[1] - 1] != 1 and head[1] - 1 != 0:
+                    possible_moves.append("left")
+                elif matrix[head[0] + 1][head[1]] != 1 and head[0] + 1 != height:
+                    possible_moves.append("down")
+                elif matrix[head[0] - 1][head[1]] != 1 and head[0] - 1 != 0:
+                    possible_moves.append("up")
+                move = random.choice(possible_moves)
+        """
         if (head[1] < s_food[1] and (matrix[head[0]][head[1]+1] != 1)):  # that means head is left side of food.
             move = "right"
         elif (head[1] > s_food[1] and (matrix[head[0]][head[1]-1] != 1)):  # that means head is left side of food.
@@ -136,6 +158,7 @@ class Battlesnake(object):
                 elif matrix[head[0]-1][head[1]] != 1 and head[0]-1 != 0:
                     possible_moves.append("up")
                 move = random.choice(possible_moves)
+         """
 #possible_moves = ["up", "down", "left", "right"]
 #move = random.choice(possible_moves)
 #height=data["board"]["height"]
