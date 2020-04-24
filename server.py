@@ -56,6 +56,7 @@ class Battlesnake(object):
         if head[1]+2 >= 0 and matrix[head[0]][head[1]-2] == 4:
             priority_moves.remove("up")
         
+        print("priority_moves=",priority_moves)
         # match possible moves and priority moves.
         combined_move = list( set(possible_moves) & set(priority_moves) )
         move =random.choice(combined_move)
@@ -234,7 +235,7 @@ class Battlesnake(object):
 
             if head[1] + 1 <= width - 1 and matrix[head[0]][head[1] + 1] not in [1,4]:
                 possible_moves.append("right")
-            print(possible_moves)
+            print("possible_moves=",possible_moves)
 
             move = self.priority(matrix, head, possible_moves, height, width)
 
