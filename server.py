@@ -83,8 +83,8 @@ class Battlesnake(object):
             avoid.append("down")
 
         combined_move = list(set(possible_moves) & set(priority_moves))
-        combined_move.remove(avoid)
-
+        combined_move.remove(set(avoid))
+        
         
         # choose the best move from combined_move
         number_of_0 = 0
