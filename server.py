@@ -130,9 +130,9 @@ class Battlesnake(object):
             elif(combined_move[i]=="left"): #head[1] is width
                 corner_dist[i] = abs(best_cordinate[1] - (head[1]-1)) + abs(best_cordinate[0] - (head[0]) )
             elif(combined_move[i]=="up"): #head[0] is height
-                corner_dist[i] = abs(best_cordinate[1] - (head[1])) + abs(best_cordinate[0] - (head[0]+1) )
-            elif(combined_move[i]=="down"): #head[0] is height
                 corner_dist[i] = abs(best_cordinate[1] - (head[1])) + abs(best_cordinate[0] - (head[0]-1) )
+            elif(combined_move[i]=="down"): #head[0] is height
+                corner_dist[i] = abs(best_cordinate[1] - (head[1])) + abs(best_cordinate[0] - (head[0]+1) )
         #find shortest
         min=100
         min_move=""
