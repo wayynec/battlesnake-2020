@@ -83,12 +83,12 @@ class Battlesnake(object):
             #avoid.append("left")
             #avoid.append("down")
             avoid.append("right")
-            avoid.append("top")
+            avoid.append("up")
         if head[1] + 1 <= width - 1 and head[0] + 1 <= height - 1 and matrix[head[0] + 1][head[1] + 1] == 4:
             #avoid.append("right")
             #avoid.append("down")
             avoid.append("left")
-            avoid.append("top")
+            avoid.append("up")
         #debug
         print("Avoid: ", avoid)
 
