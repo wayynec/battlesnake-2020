@@ -87,7 +87,6 @@ class Battlesnake(object):
             x = data["board"]["food"][i]["x"]
             y = data["board"]["food"][i]["y"]
             food.append((y, x))
-
             matrix[y][x] = 2
 
         #get head
@@ -100,15 +99,15 @@ class Battlesnake(object):
         shortest = 100
         s_food = None
         for item in food: #items are tuples
-            print(item)
             path = abs(head[0] - item[0]) + abs(head[1] - item[1])
-            if shortest > path:
-                shortest = path
-                s_food = item
-                print(s_food)
-
-        print("s_food =", s_food, "shortest path = ", shortest)
-
+            item.append(path)
+            #if shortest > path:
+            #   shortest = path
+            #   s_food = item
+        food.sort(key=lambda x: (x[2])) #sort the array using food[2](shortest path)
+        #print("s_food =", s_food, "shortest path = ", shortest)
+        print(food)
+        
         #debug
         print("------matrix------")
         for line in matrix:
@@ -116,7 +115,6 @@ class Battlesnake(object):
 
         # s_food =(y,x)
 #head(y,x)
-
         if (head[1] < s_food[1] and (matrix[head[0]][head[1]+1] != 1)):  # that means head is left side of food.
             move = "right"
         elif (head[1] > s_food[1] and (matrix[head[0]][head[1]-1] != 1)):  # that means head is left side of food.
