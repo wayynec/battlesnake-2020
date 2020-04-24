@@ -148,16 +148,18 @@ class Battlesnake(object):
             print("head[0]: ", head[0], "head[1]: ", head[1])
             possible_moves = []
             #matrix[head[0]][head[1]] is not in [1,2] and head[1] +1 <= width
-            if width-1 > head[1] > 0: #make sure the snake is within the bound
+            """
+            if width-1 > head[1] > 0 or height-1 > head[0] > 0: #make sure the snake is within the bound
                 if matrix[head[0]][head[1] + 1] != 1:
                     possible_moves.append("right")
                 if matrix[head[0]][head[1] - 1] != 1:
                     possible_moves.append("left")
-            if height-1 > head[0] > 0:
                 if matrix[head[0] + 1][head[1]] != 1:
                     possible_moves.append("down")
                 if matrix[head[0] - 1][head[1]] != 1:
                     possible_moves.append("up")
+            """
+            """
             #four corners
             if head[1] == 0 and head[0] == 0:
                 print("00000000000")
@@ -183,6 +185,18 @@ class Battlesnake(object):
                     possible_moves.append("up")
                 else:
                     possible_moves.append("left")
+            """
+            if head[0] - 1 >= 0 and matrix[head[0]-1][head[1]] != 1:
+                possible_moves.append("up")
+
+            if head[0] + 1 <= height - 1 and matrix[head[0]+1][head[1]] != 1:
+                possible_moves.append("down")
+
+            if head[1] - 1 >= 0 and matrix[head[0]][head[1] - 1] != 1:
+                possible_moves.append("left")
+
+            if head[1] + 1 <= width - 1 and matrix[head[0]][head[1] + 1] != 1:
+                possible_moves.append("right")
             print(possible_moves)
             move = random.choice(possible_moves)
         """
@@ -209,7 +223,7 @@ class Battlesnake(object):
                 move = random.choice(possible_moves)
          """
 #possible_moves = ["up", "down", "left", "right"]
-#move = random.choice(possible_moves)
+#move = random.choice(possible_moves).
 #height=data["board"]["height"]
 #width=data["board"]["width"]
         
