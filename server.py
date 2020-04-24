@@ -39,7 +39,7 @@ class Battlesnake(object):
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
-    def move(self):
+    def move(self, possible_move=None):
         # This function is called on every turn of a game. It's how your snake decides where to move.
         # Valid moves are "up", "down", "left", or "right".
         # TODO: Use the information in cherrypy.request.json to decide your next move.
@@ -148,16 +148,37 @@ class Battlesnake(object):
             print(head[0], head[1])
             possible_moves = []
             #matrix[head[0]][head[1]] is not in [1,2] and head[1] +1 <= width
-            if width-1 > head[1] > 0:
-                if matrix[head[0]][head[1] + 1] != 1 and head[1] + 1 <= width:
+            if width-1 > head[1] > 0: #make sure the snake is within the bound
+                if matrix[head[0]][head[1] + 1] != 1:
                     possible_moves.append("right")
-                if matrix[head[0]][head[1] - 1] != 1 and head[1] - 1 != 0:
+                if matrix[head[0]][head[1] - 1] != 1:
                     possible_moves.append("left")
             if height-1 > head[0] > 0:
-                if matrix[head[0] + 1][head[1]] != 1 and head[0] + 1 <= height:
+                if matrix[head[0] + 1][head[1]] != 1:
                     possible_moves.append("down")
-                if matrix[head[0] - 1][head[1]] != 1 and head[0] - 1 != 0:
+                if matrix[head[0] - 1][head[1]] != 1:
                     possible_moves.append("up")
+            #four corners
+            if head[1] == 0 and head[0] == 0:
+                if matrix[head[0]][head[1]+1] == 0:
+                    possible_move.append("down")
+                else:
+                    possible_moves.append("right")
+            if head[1] == width-1 and head[0] == 0:
+                if matrix[head[0]][head[1]-1] == 0:
+                    possible_move.append("left")
+                else:
+                    possible_moves.append("down")
+            if head[0] == height-1 and head[1] == 0:
+                if matrix[head[0]-1][head[1]] == 0:
+                    possible_move.append("up")
+                else:
+                    possible_move.append("right")
+            if head[0] == height-1 and head[1] == width-1:
+                if matrix[head[0]-1][head[1]] == 0:
+                    possible_move.append("up")
+                else:
+                    possible_move.append("left")
             move = random.choice(possible_moves)
         """
         if (head[1] < s_food[1] and (matrix[head[0]][head[1]+1] != 1)):  # that means head is left side of food.
