@@ -69,22 +69,22 @@ class Battlesnake(object):
 
         #avoid nessy
         avoid =[]
-        if matrix[head[0] - 1][head[1] + 1] == 4:  # row-1, col+1
+        if head[1]+1 <= width-1 and head[0] - 1 >= 0 and matrix[head[0] - 1][head[1] + 1] == 4:  # row-1, col+1
             #avoid.append("up")
             #avoid.append("right")
             avoid.append("left")
             avoid.append("down")
-        if matrix[head[0] - 1][head[1] - 1] == 4:
+        if head[1] - 1 >= 0 and head[0] - 1 >= 0 and matrix[head[0] - 1][head[1] - 1] == 4:
             #avoid.append("top")
             #avoid.append("left")
             avoid.append("down")
             avoid.append("right")
-        if matrix[head[0] + 1][head[1] - 1] == 4:
+        if head[1] - 1 >= 0 and head[0] + 1 <= height-1 and matrix[head[0] + 1][head[1] - 1] == 4:
             #avoid.append("left")
             #avoid.append("down")
             avoid.append("right")
             avoid.append("top")
-        if matrix[head[0] + 1][head[1] + 1] == 4:
+        if head[1] + 1 <= width - 1 and head[0] + 1 <= height - 1 and matrix[head[0] + 1][head[1] + 1] == 4:
             #avoid.append("right")
             #avoid.append("down")
             avoid.append("left")
