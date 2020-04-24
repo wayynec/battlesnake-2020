@@ -85,7 +85,7 @@ class Battlesnake(object):
                 x = data["board"]["snakes"][i]["body"][j]["x"]
                 y = data["board"]["snakes"][i]["body"][j]["y"]
                 
-                if( j==0 and my_size =< size): # j == 0 means head
+                if( j==0 and my_size <= size): # j == 0 means head
                     matrix[y][x] = 4
                 
                 else:
