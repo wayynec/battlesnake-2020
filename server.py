@@ -236,7 +236,7 @@ class Battlesnake(object):
                 possible_moves.append("right")
             print(possible_moves)
 
-            move = priority(matrix, head, possible_moves)
+            move = self.priority(matrix, head, possible_moves)
 
         
         
