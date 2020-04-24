@@ -36,9 +36,11 @@ class Battlesnake(object):
         print("START")
         return {"color": "#736CCB", "headType": "silly", "tailType": "bolt"}
 
-    # ---------------------------------------------------------------------
-    # Function priority moves: Retruns priority movement
-    def priority(self, matrix, head, possible_moves, width=None, height=None):
+
+    #---------------------------------------------------------------------
+    #Function priority moves: Retruns priority movement
+    def priority(self, matrix, head, possible_moves, height, width):
+
         priority_moves = ["up", "down", "left", "right"]
         # check if the distance between my head and enemy's head (=4) is =< 2
 
@@ -54,7 +56,12 @@ class Battlesnake(object):
 
         if head[1] + 2 >= 0 and matrix[head[0]][head[1] - 2] == 4:
             priority_moves.remove("up")
+<<<<<<< HEAD
 
+=======
+        
+        print("priority_moves=",priority_moves)
+>>>>>>> d69f02f7d6953d090b3bd487321b92d4a3254a05
         # match possible moves and priority moves.
         combined_move = list(set(possible_moves) & set(priority_moves))
         move = random.choice(combined_move)
@@ -231,9 +238,13 @@ class Battlesnake(object):
 
             if head[1] + 1 <= width - 1 and matrix[head[0]][head[1] + 1] not in [1, 4]:
                 possible_moves.append("right")
-            print(possible_moves)
+            print("possible_moves=",possible_moves)
 
+<<<<<<< HEAD
             move = self.priority(matrix, head, possible_moves)
+=======
+            move = self.priority(matrix, head, possible_moves, height, width)
+>>>>>>> d69f02f7d6953d090b3bd487321b92d4a3254a05
 
         print("--- %s seconds ---" % (time.time() - start_time))
         # end of my code--------------------------------------------
