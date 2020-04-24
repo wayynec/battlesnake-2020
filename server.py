@@ -12,7 +12,7 @@ For instructions see https://github.com/BattlesnakeOfficial/starter-snake-python
 """
 
 # Rules: 0=available space, 1=snake body, 2=Food, 3=head, 4= Bigger enemy's head
-
+# 5 = smaller head
 
 class Battlesnake(object):
     @cherrypy.expose
@@ -117,6 +117,8 @@ class Battlesnake(object):
                 
                 if( j==0 and my_size <= size): # j == 0 means head
                     matrix[y][x] = 4
+                elif( j==0 and my_size > size): # j == 0 means head
+                    matrix[y][x] = 5
                 
                 else:
                     matrix[y][x] = 1
@@ -185,45 +187,7 @@ class Battlesnake(object):
         elif load_factor == 0:
             print("head[0]: ", head[0], "head[1]: ", head[1])
             possible_moves = []
-            #matrix[head[0]][head[1]] is not in [1,2] and head[1] +1 <= width
-            """
-            if width-1 > head[1] > 0 or height-1 > head[0] > 0: #make sure the snake is within the bound
-                if matrix[head[0]][head[1] + 1] != 1:
-                    possible_moves.append("right")
-                if matrix[head[0]][head[1] - 1] != 1:
-                    possible_moves.append("left")
-                if matrix[head[0] + 1][head[1]] != 1:
-                    possible_moves.append("down")
-                if matrix[head[0] - 1][head[1]] != 1:
-                    possible_moves.append("up")
-            """
-            """
-            #four corners
-            if head[1] == 0 and head[0] == 0:
-                print("00000000000")
-                if matrix[head[0]+1][head[1]] == 0:
-                    possible_moves.append("down")
-                else:
-                    possible_moves.append("right")
-            if head[1] == width-1 and head[0] == 0:
-                print("1111111")
-                if matrix[head[0]][head[1]-1] == 0:
-                    possible_moves.append("left")
-                else:
-                    possible_moves.append("down")
-            if head[0] == height-1 and head[1] == 0:
-                print("22222222")
-                if matrix[head[0]-1][head[1]] == 0:
-                    possible_moves.append("up")
-                else:
-                    possible_moves.append("right")
-            if head[0] == height-1 and head[1] == width-1:
-                print("3333333333")
-                if matrix[head[0]-1][head[1]] == 0:
-                    possible_moves.append("up")
-                else:
-                    possible_moves.append("left")
-            """
+            
             if head[0] - 1 >= 0 and matrix[head[0]-1][head[1]] not in [1,4]:
                 possible_moves.append("up")
 
@@ -239,8 +203,6 @@ class Battlesnake(object):
 
             move = self.priority(matrix, head, possible_moves, height, width)
 
-        
-        
         
         print("--- %s seconds ---" % (time.time() - start_time))
         #end of my code--------------------------------------------
