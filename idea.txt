@@ -42,16 +42,15 @@ else:#that means head and food are in the same column!
 ----------------------------------------------------------
 ToDo
 
-#1: Control load factor(1 food to restore the health, one turn is -1)
-create a flag for load factor, load factor = 0 when health > 50
+#1: Control load factor(1 food plus 200, one turn is -1)
 => load factor of health = 50. 
 If health is above, Penelope randomly moves. 
 =>Create possible moves array, and pick randomly.
 
-Case1: Want to eat food. (Use shortest path greedy algorithm.)
+Case1: health < 50. Want to eat food. (Use shortest path greedy algorithm.)
 =>add a situation if other snake head is next to us. 
 
-    Make a list food  ={ [y,x,distance]...etc }
+    Make a dictionary, food ={ (y,x): 8, (y,x): 5, ... etc }
     Case1-a) If enemy is bigger, go eat second food. => Sort food array by "food.sort(distance)"
              Then s_food=food[0] and second food is food[1].
 
@@ -60,12 +59,69 @@ Case1: Want to eat food. (Use shortest path greedy algorithm.)
 
 Case2: Want to survive efficiently (with probability?) ...avoid enemy and food. 
 =>Only move available space.
-=> Avoid a situation where penelope can go nowhere.
+
+Case2-1: Always take distance with 2 cells from bigger enemy's head.
+=>mark bigger enemy's head as '4'. 
+  If distance between cell 4(enemy) is == 2, choose open opposite direction.
+
+   ex)	0 4 0
+	0 0 0
+        0 3 0
+	0 0 0   then go to down.
+
+# get my_size
+        # my_size=len(data["you"]["body"])
+
+#code---------------------
+
+def load_factor_0(matrix, head, possible_moves)
+
+priority_moves=["up", "down", "left", "right"]
+
+else: #if health > 50
+    # if the distance between my head and enemy's head (=4) is =< 2
+
+    if head[0]+2 =< width matrix[head[0]+2][head[1]] == 4: #enemy is at the right within range 2.
+        priority_moves.remove("right")
+
+    if head[0]-2 =< 0 and matrix[head[0]-2][head[1]] == 4: 
+        priority_moves.remove("left")
+
+    if head[1]+2 =< height and matrix[head[0]][head[1]+2] == 4: 
+        priority_moves.remove("down")
+
+    if head[1]+2 =< 0 and matrix[head[0]][head[1]-2] == 4: 
+        priority_moves.remove("up")
+
+# match possible moves and priority moves.
+combined_move = list(set(possible_moves) & set(priority_moves))
+
+if previous_move is in combined_move:
+    move = previous_move
+elif( len(combined_move) >0 ):
+    move = combined_move[0]
+else: #just return available possible moves
+    move = possible_moves[0]
+
+return move #String
+
+
+Case2-2: Minimize number of turning.
+=>If Case2-1 has no problem, then remember last move Penelope took. If same movement can be repeated, then repeat.
+
+#create previous_move in line 18.
+#right before returning move, update previous_move
+previous_move=move.
+
+
+
+Case2-3: If Penelope cannot repeat the same move, then pick the lowest ratio of body and food.
 => Partition 11x11 matrix into 4 part. 
    In each sub matrix, compute ratio of 1/size of sub matrix.
    Calculate minimum ration sub matrix, and penelope goes into the sub matrix.
   
    If penelope is already in the minimum ratio sub matrix, then moves to the second lowest matrix.
+   or make a random move?
 
 
 
