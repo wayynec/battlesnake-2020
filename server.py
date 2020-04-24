@@ -148,12 +148,12 @@ class Battlesnake(object):
             print(head[0], head[1])
             possible_moves = []
             #matrix[head[0]][head[1]] is not in [1,2] and head[1] +1 <= width
-            if width > head[1] > 0:
+            if width-1 > head[1] > 0:
                 if matrix[head[0]][head[1] + 1] != 1 and head[1] + 1 <= width:
                     possible_moves.append("right")
                 if matrix[head[0]][head[1] - 1] != 1 and head[1] - 1 != 0:
                     possible_moves.append("left")
-            if height > head[0] > 0:
+            if height-1 > head[0] > 0:
                 if matrix[head[0] + 1][head[1]] != 1 and head[0] + 1 <= height:
                     possible_moves.append("down")
                 if matrix[head[0] - 1][head[1]] != 1 and head[0] - 1 != 0:
