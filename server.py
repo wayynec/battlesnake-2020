@@ -137,22 +137,22 @@ class Battlesnake(object):
                     possible_moves = []
                     if matrix[head[0]][head[1] + 1] != 1 and head[1] + 1 != width:
                         possible_moves.append("right")
-                    elif matrix[head[0]][head[1] - 1] != 1 and head[1] - 1 != 0:
+                    if matrix[head[0]][head[1] - 1] != 1 and head[1] - 1 != 0:
                         possible_moves.append("left")
-                    elif matrix[head[0] + 1][head[1]] != 1 and head[0] + 1 != height:
+                    if matrix[head[0] + 1][head[1]] != 1 and head[0] + 1 != height:
                         possible_moves.append("down")
-                    elif matrix[head[0] - 1][head[1]] != 1 and head[0] - 1 != 0:
+                    if matrix[head[0] - 1][head[1]] != 1 and head[0] - 1 != 0:
                         possible_moves.append("up")
                     move = random.choice(possible_moves)
         elif load_factor == 0:
             possible_moves = []
             if matrix[head[0]][head[1] + 1] != 1 and head[1] + 1 != width:
                 possible_moves.append("right")
-            elif matrix[head[0]][head[1] - 1] != 1 and head[1] - 1 != 0:
+            if matrix[head[0]][head[1] - 1] != 1 and head[1] - 1 != 0:
                 possible_moves.append("left")
-            elif matrix[head[0] + 1][head[1]] != 1 and head[0] + 1 != height:
+            if matrix[head[0] + 1][head[1]] != 1 and head[0] + 1 != height:
                 possible_moves.append("down")
-            elif matrix[head[0] - 1][head[1]] != 1 and head[0] - 1 != 0:
+            if matrix[head[0] - 1][head[1]] != 1 and head[0] - 1 != 0:
                 possible_moves.append("up")
             move = random.choice(possible_moves)
         """
