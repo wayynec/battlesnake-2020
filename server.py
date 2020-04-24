@@ -60,6 +60,8 @@ class Battlesnake(object):
         # match possible moves and priority moves.
         combined_move = list( set(possible_moves) & set(priority_moves) )
         
+        
+        
         # choose the best move from combined_move
         number_of_0 = 0
         for row in range(height//2):
@@ -95,19 +97,45 @@ class Battlesnake(object):
         list_ratio.sort()
 
         #debug
+        best_cordinate = (0,0)
         if(max(list_ratio)==ratio1):
             print("best ratio is:", "ratio1")
-        if(max(list_ratio)==ratio2):
+            best_cordinate = (0,0)
+        elif(max(list_ratio)==ratio2):
             print("best ratio is:", "ratio2")
-        if(max(list_ratio)==ratio3):
+            best_cordinate = (0, width-1)
+        elif(max(list_ratio)==ratio3):
             print("best ratio is:", "ratio3")
-        if(max(list_ratio)==ratio4):
+            best_cordinate = (height-1,0)
+        else:
             print("best ratio is:", "ratio4")
+            best_cordinate = (height-1,width-1)
+
+
+
         #compute distance of each possible moves?
+        # From combined_move, We want corner_dist =[left:1000, right:1000]
+        corner_dist = [100]*len(combined_move) #between each combined_move
+
+        for i in range(len(combined_move)):
+            if(combined_move[i]=="right"): #head[1] is width
+                corner_dist[i] = abs(best_cordinate[1] - (head[1]+1)) + abs(best_cordinate[0] - (head[0]) )
+            elif(combined_move[i]=="left"): #head[1] is width
+                corner_dist[i] = abs(best_cordinate[1] - (head[1]-1)) + abs(best_cordinate[0] - (head[0]) )
+            elif(combined_move[i]=="up"): #head[0] is height
+                corner_dist[i] = abs(best_cordinate[1] - (head[1])) + abs(best_cordinate[0] - (head[0]+1) )
+            elif(combined_move[i]=="down"): #head[0] is height
+                corner_dist[i] = abs(best_cordinate[1] - (head[1])) + abs(best_cordinate[0] - (head[0]-1) )
+        #find shortest
+        min=100
+        min_move=""
+        for i in range(len(combined_move)):
+            if min > corner_dist[i]:
+                # corner_dist and combined_move have same order
+                min = corner_dist[i]
+                min_move = combined_move[i]
     
-    
-    
-        move =random.choice(combined_move)
+        move = min_move
         
         
         return move
