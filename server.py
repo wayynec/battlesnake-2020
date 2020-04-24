@@ -11,7 +11,7 @@ This is a simple Battlesnake server written in Python.
 For instructions see https://github.com/BattlesnakeOfficial/starter-snake-python/README.md
 """
 
-# Rules: 0=available space, 1=snake body, 2=Food, 3=head
+# Rules: 0=available space, 1=snake body, 2=Food, 3=head, 4= Bigger enemy's head
 
 
 class Battlesnake(object):
@@ -70,16 +70,26 @@ class Battlesnake(object):
             y = data["you"]["body"][i]["y"]
             matrix[y][x] = 1
         
-        
+        # get my_size
+        my_size=len(data["you"]["body"])
         
         # Input "other" snakes location into matrix
         for i in range(len(data["board"]["snakes"])): #body[i]=[x,y]
             # j is head, body, or tail...by index
+            
+            #get enemy's size
+            size = len(data["board"]["snakes"][i]["body"])
+            
             for j in range(len(data["board"]["snakes"][i]["body"])):
                 
                 x = data["board"]["snakes"][i]["body"][j]["x"]
                 y = data["board"]["snakes"][i]["body"][j]["y"]
-                matrix[y][x] = 1
+                
+                if( j==0 and my_size =< size): # j == 0 means head
+                    matrix[y][x] = 4
+                
+                else:
+                    matrix[y][x] = 1
         
         # Input food location into matrix
         food = []
@@ -235,6 +245,22 @@ class Battlesnake(object):
         print(f"MOVE: {move}")
         return {"move": move}
 
+    
+    
+    #---------------------------------------------------------------------
+    #Function Priority moves: Retruns priority movement
+    def priority(matrix, head, possible_moves):
+        priority_moves=["up", "down", "left", "right"]
+        # check if the distance between my head and enemy's head (=4) is =< 2
+
+    
+    
+        return move
+    
+    
+    
+    #---------------------------------------------------------------------
+    
     @cherrypy.expose
     @cherrypy.tools.json_in()
     def end(self):
