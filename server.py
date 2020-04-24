@@ -145,6 +145,7 @@ class Battlesnake(object):
                         possible_moves.append("up")
                     move = random.choice(possible_moves)
         elif load_factor == 0:
+            print(head[0], head[1])
             possible_moves = []
             #matrix[head[0]][head[1]] is not in [1,2] and head[1] +1 <= width
             if width > head[1] > 0:
