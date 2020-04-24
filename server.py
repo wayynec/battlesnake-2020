@@ -311,10 +311,9 @@ class Battlesnake(object):
             print(line)
 
         if load_factor == 1:
-            if (head[1] < food[0][1] and (matrix[head[0]][head[1] + 1] != 1)):  # that means head is left side of food.
+            if head[1] < food[0][1] and (matrix[head[0]][head[1] + 1] != 1):  # that means head is left side of food.
                 move = "right"
-            elif (head[1] > food[0][1] and (
-                    matrix[head[0]][head[1] - 1] != 1)):  # that means head is left side of food.
+            elif head[1] > food[0][1] and (matrix[head[0]][head[1] - 1] != 1):  # that means head is left side of food.
                 move = "left"
             else:  # that means head and food are in the same column!
 
@@ -326,11 +325,11 @@ class Battlesnake(object):
                     possible_moves = []
                     if matrix[head[0]][head[1] + 1] != 1 and head[1] + 1 != width:
                         possible_moves.append("right")
-                    if matrix[head[0]][head[1] - 1] != 1 and head[1] - 1 != 0:
+                    if matrix[head[0]][head[1] - 1] != 1 and head[1] - 1 >= 0:
                         possible_moves.append("left")
                     if matrix[head[0] + 1][head[1]] != 1 and head[0] + 1 != height:
                         possible_moves.append("down")
-                    if matrix[head[0] - 1][head[1]] != 1 and head[0] - 1 != 0:
+                    if matrix[head[0] - 1][head[1]] != 1 and head[0] - 1 >= 0:
                         possible_moves.append("up")
                     move = random.choice(possible_moves)
         elif load_factor == 0:
