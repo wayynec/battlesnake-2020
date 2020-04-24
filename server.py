@@ -44,19 +44,19 @@ class Battlesnake(object):
         priority_moves = ["up", "down", "left", "right"]
         # check if the distance between my head and enemy's head (=4) is =< 2
         
-        #enemy is at the right within range 2. head[0] is width, head[1] is height
-        if head[0]+2 <= width-1 and matrix[head[0]+2][head[1]] == 4:
+        #enemy is at the right within range 2. head[0] is height, head[1] is width
+        if head[0]+2 <= height-1 and matrix[head[0]][head[1]+2] == 4:
 
             priority_moves.remove("right")
 
-        if head[0] - 2 >= 0 and matrix[head[0] - 2][head[1]] == 4:
+        if head[0] - 2 >= 0 and matrix[head[0]][head[1]-2] == 4:
             priority_moves.remove("left")
 
-        if head[1] + 2 <= height - 1 and matrix[head[0]][head[1] + 2] == 4:
+        if head[1] + 2 <= width - 1 and matrix[head[0]+2][head[1]] == 4:
             priority_moves.remove("down")
 
         
-        if head[1]-2 >= 0 and matrix[head[0]][head[1]-2] == 4:
+        if head[1]-2 >= 0 and matrix[head[0]-2][head[1]] == 4:
 
             priority_moves.remove("up")
 
