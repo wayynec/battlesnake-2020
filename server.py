@@ -106,20 +106,24 @@ class Battlesnake(object):
                     if head[0] - 1 >= 0 and matrix[head[0] - 1][head[1]] == 2:
                         combined_move.remove("up")
                         print("call combined_move remove up")
+                        break
 
                 elif combined_move[i] == "down":
                     if head[0] + 1 <= height - 1 and matrix[head[0] + 1][head[1]] == 2:
                         combined_move.remove("down")
                         print("call combined_move remove down")
+                        break
                 elif combined_move[i] == "right":
                     if head[1] + 1 <= width - 1 and matrix[head[0]][head[1] + 1] == 2:
                         combined_move.remove("right")
                         print("call combined_move remove right")
+                        break
 
                 elif combined_move[i] == "left":
                     if head[1] - 1 <= 0 and matrix[head[0]][head[1] - 1] == 2:
                         combined_move.remove("left")
                         print("call combined_move remove left")
+                        break
             print("combined move in avoid eating food(after): ", combined_move)
         # choose the best move from combined_move
         number_of_0 = 0
