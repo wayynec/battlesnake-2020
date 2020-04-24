@@ -208,7 +208,9 @@ class Battlesnake(object):
             if head[1] + 1 <= width - 1 and matrix[head[0]][head[1] + 1] != 1:
                 possible_moves.append("right")
             print(possible_moves)
-            move = random.choice(possible_moves)
+
+            move = priority(matrix, head, possible_moves)
+            
         """
         if (head[1] < s_food[1] and (matrix[head[0]][head[1]+1] != 1)):  # that means head is left side of food.
             move = "right"
@@ -248,7 +250,7 @@ class Battlesnake(object):
     
     
     #---------------------------------------------------------------------
-    #Function Priority moves: Retruns priority movement
+    #Function priority moves: Retruns priority movement
     def priority(matrix, head, possible_moves):
         priority_moves = ["up", "down", "left", "right"]
         # check if the distance between my head and enemy's head (=4) is =< 2
