@@ -70,21 +70,29 @@ class Battlesnake(object):
         #avoid nessy
         avoid =[]
         if matrix[head[0] - 1][head[1] + 1] == 4:  # row-1, col+1
-            avoid.append("up")
-            avoid.append("right")
+            #avoid.append("up")
+            #avoid.append("right")
+            avoid.append("left")
+            avoid.append("down")
         if matrix[head[0] - 1][head[1] - 1] == 4:
-            avoid.append("top")
-            avoid.append("left")
-        if matrix[head[0] + 1][head[1] - 1] == 4:
-            avoid.append("left")
+            #avoid.append("top")
+            #avoid.append("left")
             avoid.append("down")
-        if matrix[head[0] + 1][head[1] + 1] == 4:
             avoid.append("right")
-            avoid.append("down")
+        if matrix[head[0] + 1][head[1] - 1] == 4:
+            #avoid.append("left")
+            #avoid.append("down")
+            avoid.append("right")
+            avoid.append("top")
+        if matrix[head[0] + 1][head[1] + 1] == 4:
+            #avoid.append("right")
+            #avoid.append("down")
+            avoid.append("left")
+            avoid.append("top")
 
-        combined_move = list(set(possible_moves) & set(priority_moves))
-        combined_move.remove(set(avoid))
-        
+        combined_move = list(set(possible_moves) & set(priority_moves) & set(avoid))
+
+
         
         # choose the best move from combined_move
         number_of_0 = 0
