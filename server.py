@@ -59,7 +59,49 @@ class Battlesnake(object):
         print("priority_moves=",priority_moves)
         # match possible moves and priority moves.
         combined_move = list( set(possible_moves) & set(priority_moves) )
+        
+        # choose the best move from combined_move
+        number_of_0 = 0
+        for row in range(height//2):
+            for col in range(width//2): #Upper left
+                if(matrix[row][col] not in [1,4] ):
+                    number_of_0 ++
+        ratio1 = number_of_0/((height//2)*(width//2))
+
+        number_of_0 = 0
+        for row in range(height//2):
+            for col in range(width//2, width): #Upper right
+                if(matrix[row][col] not in [1,4] ):
+                    number_of_0 ++
+        ratio2 = number_of_0/( (height//2)* (width - width//2))
+
+
+        number_of_0 = 0
+        for row in range(height//2, height):
+            for col in range(width//2): #Lower left
+                if(matrix[row][col] not in [1,4] ):
+                    number_of_0 ++
+        ratio3 = number_of_0/( (height - height//2)*(width//2))
+
+
+        number_of_0 = 0
+        for row in range(height//2, height):
+            for col in range(width//2, width): #Lower right
+                if(matrix[row][col] not in [1,4] ):
+                    number_of_0 ++
+        ratio4 = number_of_0/( (height - height//2)* (width - width//2) )
+        
+        list_ratio=[ratio1, ratio2, ratio3, ratio4]
+        list_ratio.sort()
+
+        #debug
+        print("best ratio is:", max(list_ratio))
+        #compute distance of each possible moves?
+    
+    
+    
         move =random.choice(combined_move)
+        
         
         return move
     
