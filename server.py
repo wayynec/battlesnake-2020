@@ -141,7 +141,11 @@ class Battlesnake(object):
                 # corner_dist and combined_move have same order
                 min = corner_dist[i]
                 min_move = combined_move[i]
-    
+
+        #debug
+        print("combined_move=",combined_move)
+        print("corner_dist=",corner_dist)
+
         move = min_move
         
         
