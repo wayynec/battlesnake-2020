@@ -201,6 +201,7 @@ class Battlesnake(object):
         ################End of Prob########
         else:
             move = combined_move
+
         return move
 
     # ---------------------------------------------------------------------
@@ -374,7 +375,8 @@ class Battlesnake(object):
 
                     if len(possible_moves) > 0:
                         move = self.priority(matrix, head, possible_moves, height, width, load_factor)
-                    move = random.choice(possible_moves)
+                    move = random.choice(move)
+                    print("final move: ", move)
         elif load_factor == 0:
             print("head[0]: ", head[0], "head[1]: ", head[1])
             possible_moves = []
