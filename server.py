@@ -93,33 +93,34 @@ class Battlesnake(object):
         if (len(list(set(combined_move) & set(avoid))) > 0):  # then
             combined_move = list(set(combined_move) & set(avoid))
 
-        # avoid eating food when health > 50
-        if len(combined_move) > 1:  # at least we have two choice.
-            print("combined move in avoid eating food: ", combined_move, "len: ", len(combined_move))
-            for i in range(len(combined_move)):
-                if combined_move[i] == "up":
-                    if head[0] - 1 >= 0 and matrix[head[0] - 1][head[1]] == 2:
-                        combined_move.remove("up")
-                        print("call combined_move remove up")
-                        break
+        if flag == 1:
+            # avoid eating food when health > 50
+            if len(combined_move) > 1:  # at least we have two choice.
+                print("combined move in avoid eating food: ", combined_move, "len: ", len(combined_move))
+                for i in range(len(combined_move)):
+                    if combined_move[i] == "up":
+                        if head[0] - 1 >= 0 and matrix[head[0] - 1][head[1]] == 2:
+                            combined_move.remove("up")
+                            print("call combined_move remove up")
+                            break
 
-                elif combined_move[i] == "down":
-                    if head[0] + 1 <= height - 1 and matrix[head[0] + 1][head[1]] == 2:
-                        combined_move.remove("down")
-                        print("call combined_move remove down")
-                        break
-                elif combined_move[i] == "right":
-                    if head[1] + 1 <= width - 1 and matrix[head[0]][head[1] + 1] == 2:
-                        combined_move.remove("right")
-                        print("call combined_move remove right")
-                        break
+                    elif combined_move[i] == "down":
+                        if head[0] + 1 <= height - 1 and matrix[head[0] + 1][head[1]] == 2:
+                            combined_move.remove("down")
+                            print("call combined_move remove down")
+                            break
+                    elif combined_move[i] == "right":
+                        if head[1] + 1 <= width - 1 and matrix[head[0]][head[1] + 1] == 2:
+                            combined_move.remove("right")
+                            print("call combined_move remove right")
+                            break
 
-                elif combined_move[i] == "left":
-                    if head[1] - 1 >= 0 and matrix[head[0]][head[1] - 1] == 2:
-                        combined_move.remove("left")
-                        print("call combined_move remove left")
-                        break
-            print("combined move in avoid eating food(after): ", combined_move)
+                    elif combined_move[i] == "left":
+                        if head[1] - 1 >= 0 and matrix[head[0]][head[1] - 1] == 2:
+                            combined_move.remove("left")
+                            print("call combined_move remove left")
+                            break
+                print("combined move in avoid eating food(after): ", combined_move)
 
         ####Prob start####
         if flag == 0:
