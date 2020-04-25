@@ -324,6 +324,7 @@ class Battlesnake(object):
             if head[1] < food[0][1] and (matrix[head[0]][head[1] + 1] != 1):  # that means head is left side of food.
                 movement = "right"
                 move = self.priority(matrix, head, possible_moves, height, width, load_factor)
+                print("move: ", move)
                 if movement in move:
                     move = movement
                 else:
@@ -332,6 +333,7 @@ class Battlesnake(object):
             elif head[1] > food[0][1] and (matrix[head[0]][head[1] - 1] != 1):  # that means head is left side of food.
                 movement = "left"
                 move = self.priority(matrix, head, possible_moves, height, width, load_factor)
+                print("move: ", move)
                 if movement in move:
                     move = movement
                 else:
@@ -341,6 +343,7 @@ class Battlesnake(object):
                 if head[0] < food[0][0] and (matrix[head[0] + 1][head[1]] != 1):  # that means hard is above the food.
                     movement = "down"
                     move = self.priority(matrix, head, possible_moves, height, width, load_factor)
+                    print("move: ", move)
                     if movement in move:
                         move = movement
                     else:
@@ -348,6 +351,7 @@ class Battlesnake(object):
                 elif head[0] > food[0][0] and (matrix[head[0] - 1][head[1]] != 1):  # that means hard is below the food.
                     movement = "up"
                     move = self.priority(matrix, head, possible_moves, height, width, load_factor)
+                    print("move: ", move)
                     if movement in move:
                         move = movement
                     else:
