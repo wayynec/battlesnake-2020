@@ -120,7 +120,7 @@ class Battlesnake(object):
                         break
 
                 elif combined_move[i] == "left":
-                    if head[1] - 1 <= 0 and matrix[head[0]][head[1] - 1] == 2:
+                    if head[1] - 1 >= 0 and matrix[head[0]][head[1] - 1] == 2:
                         combined_move.remove("left")
                         print("call combined_move remove left")
                         break
