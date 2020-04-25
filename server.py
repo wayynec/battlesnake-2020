@@ -311,9 +311,33 @@ class Battlesnake(object):
         for line in matrix:
             print(line)
 
+
         if load_factor == 1:
+
+            possible_moves = []
+
+            
+            if head[0] - 1 >= 0 and matrix[head[0]-1][head[1]] not in [1,4]:
+
+                possible_moves.append("up")
+
+            if head[0] + 1 <= height - 1 and matrix[head[0] + 1][head[1]] not in [1, 4]:
+                possible_moves.append("down")
+
+            if head[1] - 1 >= 0 and matrix[head[0]][head[1] - 1] not in [1, 4]:
+                possible_moves.append("left")
+
+            if head[1] + 1 <= width - 1 and matrix[head[0]][head[1] + 1] not in [1, 4]:
+                possible_moves.append("right")
+            print("possible_moves=", possible_moves)
+
+
             if head[1] < food[0][1] and (matrix[head[0]][head[1] + 1] != 1):  # that means head is left side of food.
-                move = "right"
+                movement = "right"
+                #move = self.priority(matrix, head, possible_moves, height, width)
+                #if movement in move:
+                 #   move = movement
+
             elif head[1] > food[0][1] and (matrix[head[0]][head[1] - 1] != 1):  # that means head is left side of food.
                 move = "left"
             else:  # that means head and food are in the same column!
