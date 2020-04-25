@@ -288,7 +288,7 @@ class Battlesnake(object):
         # get health
         h = data["you"]["health"]
         load_factor = 0  # load factor = 0 when health > 50
-        if h < 90:
+        if h < 25:
             load_factor = 1
         # head.append(x) #now, head=[row, col]
         shortest = 100
@@ -332,6 +332,7 @@ class Battlesnake(object):
                     if matrix[head[0] - 1][head[1]] not in [1, 4] and head[0] - 1 >= 0:
                         possible_moves.append("up")
                     move = random.choice(possible_moves)
+                    
         elif load_factor == 0:
             print("head[0]: ", head[0], "head[1]: ", head[1])
             possible_moves = []
