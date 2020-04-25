@@ -275,7 +275,8 @@ class Battlesnake(object):
                 
 
                 else:
-                    matrix[y][x] = 1
+                    if data["turn"] > 0:
+                        matrix[y][x] = 1
 
         # Input food location into matrix
         food = []
