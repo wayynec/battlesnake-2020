@@ -329,6 +329,7 @@ class Battlesnake(object):
                     move = movement
                 else:
                     move = random.choice(move)
+                print("final move: ", move)
 
             elif head[1] > food[0][1] and (matrix[head[0]][head[1] - 1] != 1):  # that means head is left side of food.
                 movement = "left"
@@ -338,6 +339,7 @@ class Battlesnake(object):
                     move = movement
                 else:
                     move = random.choice(move)
+                print("final move: ", move)
 
             else:  # that means head and food are in the same column!
                 if head[0] < food[0][0] and (matrix[head[0] + 1][head[1]] != 1):  # that means hard is above the food.
@@ -348,6 +350,7 @@ class Battlesnake(object):
                         move = movement
                     else:
                         move = random.choice(move)
+                    print("final move: ", move)
                 elif head[0] > food[0][0] and (matrix[head[0] - 1][head[1]] != 1):  # that means hard is below the food.
                     movement = "up"
                     move = self.priority(matrix, head, possible_moves, height, width, load_factor)
@@ -356,6 +359,7 @@ class Battlesnake(object):
                         move = movement
                     else:
                         move = random.choice(move)
+                    print("final move: ", move)
                 else:
                     possible_moves = []
                     if head[1] + 1 != width and matrix[head[0]][head[1] + 1] not in [1, 4]:
