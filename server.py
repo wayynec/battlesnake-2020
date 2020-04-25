@@ -288,7 +288,7 @@ class Battlesnake(object):
         # get health
         h = data["you"]["health"]
         load_factor = 0  # load factor = 0 when health > 50
-        if h < 25:
+        if h < 90:
             load_factor = 1
         # head.append(x) #now, head=[row, col]
         shortest = 100
@@ -323,13 +323,13 @@ class Battlesnake(object):
                     move = "up"
                 else:
                     possible_moves = []
-                    if matrix[head[0]][head[1] + 1] != 1 and head[1] + 1 != width:
+                    if matrix[head[0]][head[1] + 1] not in [1, 4] and head[1] + 1 != width:
                         possible_moves.append("right")
-                    if matrix[head[0]][head[1] - 1] != 1 and head[1] - 1 >= 0:
+                    if matrix[head[0]][head[1] - 1] not in [1, 4] and head[1] - 1 >= 0:
                         possible_moves.append("left")
-                    if matrix[head[0] + 1][head[1]] != 1 and head[0] + 1 != height:
+                    if matrix[head[0] + 1][head[1]] not in [1, 4] and head[0] + 1 != height:
                         possible_moves.append("down")
-                    if matrix[head[0] - 1][head[1]] != 1 and head[0] - 1 >= 0:
+                    if matrix[head[0] - 1][head[1]] not in [1, 4] and head[0] - 1 >= 0:
                         possible_moves.append("up")
                     move = random.choice(possible_moves)
         elif load_factor == 0:
