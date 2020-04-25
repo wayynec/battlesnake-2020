@@ -248,6 +248,7 @@ class Battlesnake(object):
 
         # get my_size
         my_size = len(data["you"]["body"])
+        print("my size:", my_size)
 
         # Input "other" snakes location into matrix
         for i in range(len(data["board"]["snakes"])):  # body[i]=[x,y]
@@ -255,8 +256,10 @@ class Battlesnake(object):
 
             # get enemy's size
             size = len(data["board"]["snakes"][i]["body"])
+            print("enemy size: ", size)
 
             for j in range(len(data["board"]["snakes"][i]["body"])):
+                print("j: ", j)
 
                 x = data["board"]["snakes"][i]["body"][j]["x"]
                 y = data["board"]["snakes"][i]["body"][j]["y"]
