@@ -34,7 +34,7 @@ class Battlesnake(object):
         # TODO: Use this function to decide how your snake is going to look on the board.
         data = cherrypy.request.json
         print("START")
-        return {"color": "#736CCB", "headType": "silly", "tailType": "bolt"}
+        return {"color": "#736CCB", "headType": "shac-tiger-king", "tailType": "shac-tiger-tail"}
 
     # ---------------------------------------------------------------------
     # Function priority moves: Retruns priority movement
