@@ -87,9 +87,9 @@ class Battlesnake(object):
         # debug
         print("Avoid: ", avoid)
 
-        combined_move = list(set(possible_moves) & set(priority_moves))
+        if( len(list(set(possible_moves) & set(priority_moves))) > 0 ):# then
+            combined_move = list(set(possible_moves) & set(priority_moves))
 
-        combined_move = list(set(possible_moves) & set(priority_moves))
         if (len(list(set(combined_move) & set(avoid))) > 0):  # then
             combined_move = list(set(combined_move) & set(avoid))
 
