@@ -122,7 +122,7 @@ class Battlesnake(object):
             print("combined move in avoid eating food(after): ", combined_move)
 
         ####Prob start####
-        if flag == 1:
+        if flag == 0:
             # choose the best move from combined_move
             number_of_0 = 0
             for row in range(height // 2):
