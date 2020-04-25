@@ -358,13 +358,13 @@ class Battlesnake(object):
                         move = random.choice(move)
                 else:
                     possible_moves = []
-                    if matrix[head[0]][head[1] + 1] not in [1, 4] and head[1] + 1 != width:
+                    if head[1] + 1 != width and matrix[head[0]][head[1] + 1] not in [1, 4]:
                         possible_moves.append("right")
-                    if matrix[head[0]][head[1] - 1] not in [1, 4] and head[1] - 1 >= 0:
+                    if head[1] - 1 >= 0 and matrix[head[0]][head[1] - 1] not in [1, 4]:
                         possible_moves.append("left")
-                    if matrix[head[0] + 1][head[1]] not in [1, 4] and head[0] + 1 != height:
+                    if head[0] + 1 != height and matrix[head[0] + 1][head[1]] not in [1, 4]:
                         possible_moves.append("down")
-                    if matrix[head[0] - 1][head[1]] not in [1, 4] and head[0] - 1 >= 0:
+                    if head[0] - 1 >= 0 and matrix[head[0] - 1][head[1]] not in [1, 4]:
                         possible_moves.append("up")
                     # move = random.choice(possible_moves)
                     if len(possible_moves) > 0:
