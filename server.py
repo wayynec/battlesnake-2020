@@ -284,7 +284,7 @@ class Battlesnake(object):
         # get health
         h = data["you"]["health"]
         load_factor = 0  # load factor = 0 when health > 50
-        if h < 100:
+        if h < 200:
             load_factor = 1
         # head.append(x) #now, head=[row, col]
         shortest = 100
