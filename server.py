@@ -89,9 +89,9 @@ class Battlesnake(object):
 
         if( len(list(set(possible_moves) & set(priority_moves))) > 0 ):# then
             combined_move = list(set(possible_moves) & set(priority_moves))
-
-        if (len(list(set(combined_move) & set(avoid))) > 0):  # then
-            combined_move = list(set(combined_move) & set(avoid))
+        if len(combined_move) > 0:
+            if (len(list(set(combined_move) & set(avoid))) > 0):  # then
+                combined_move = list(set(combined_move) & set(avoid))
 
         if flag == 0:
             # avoid eating food when health > 50
