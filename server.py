@@ -370,10 +370,10 @@ class Battlesnake(object):
                         possible_moves.append("down")
                     if head[0] - 1 >= 0 and matrix[head[0] - 1][head[1]] not in [1, 4]:
                         possible_moves.append("up")
-                    # move = random.choice(possible_moves)
+
                     if len(possible_moves) > 0:
                         move = self.priority(matrix, head, possible_moves, height, width, load_factor)
-
+                    move = random.choice(possible_moves)
         elif load_factor == 0:
             print("head[0]: ", head[0], "head[1]: ", head[1])
             possible_moves = []
