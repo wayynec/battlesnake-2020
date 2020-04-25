@@ -36,60 +36,55 @@ class Battlesnake(object):
         print("START")
         return {"color": "#736CCB", "headType": "silly", "tailType": "bolt"}
 
-
-
-    #---------------------------------------------------------------------
-    #Function priority moves: Retruns priority movement
-    def priority(self, matrix, head, possible_moves, height, width):
+    # ---------------------------------------------------------------------
+    # Function priority moves: Retruns priority movement
+    # flag = 0 need prob.
+    def priority(self, matrix, head, possible_moves, height, width, flag):
 
         priority_moves = ["up", "down", "left", "right"]
         # check if the distance between my head and enemy's head (=4) is =< 2
-        
-        #enemy is at the right within range 2. head[0] is height, head[1] is width
-        # head[1]+2 =>col +2
-        if head[1]+2 <= width-1 and matrix[head[0]][head[1]+2] == 4:
 
+        # enemy is at the right within range 2. head[0] is height, head[1] is width
+        # head[1]+2 =>col +2
+        if head[1] + 2 <= width - 1 and matrix[head[0]][head[1] + 2] == 4:
             priority_moves.remove("right")
 
-        if head[1]-2 >= 0 and matrix[head[0]][head[1]-2] == 4:
+        if head[1] - 2 >= 0 and matrix[head[0]][head[1] - 2] == 4:
             priority_moves.remove("left")
 
-        if head[0]+2 <= height - 1 and matrix[head[0]+2][head[1]] == 4:
+        if head[0] + 2 <= height - 1 and matrix[head[0] + 2][head[1]] == 4:
             priority_moves.remove("down")
 
-        
-        if head[0]-2 >= 0 and matrix[head[0]-2][head[1]] == 4:
-
+        if head[0] - 2 >= 0 and matrix[head[0] - 2][head[1]] == 4:
             priority_moves.remove("up")
 
-        
-        print("priority_moves=",priority_moves)
+        print("priority_moves=", priority_moves)
 
         # match possible moves and priority moves.
 
-        #avoid nessy, blind spot
-        avoid =[]
-        if head[1]+1 <= width-1 and head[0] - 1 >= 0 and matrix[head[0] - 1][head[1] + 1] == 4:  # row-1, col+1
-            #avoid.append("up")
-            #avoid.append("right")
+        # avoid nessy, blind spot
+        avoid = []
+        if head[1] + 1 <= width - 1 and head[0] - 1 >= 0 and matrix[head[0] - 1][head[1] + 1] == 4:  # row-1, col+1
+            # avoid.append("up")
+            # avoid.append("right")
             avoid.append("left")
             avoid.append("down")
         if head[1] - 1 >= 0 and head[0] - 1 >= 0 and matrix[head[0] - 1][head[1] - 1] == 4:
-            #avoid.append("top")
-            #avoid.append("left")
+            # avoid.append("top")
+            # avoid.append("left")
             avoid.append("down")
             avoid.append("right")
-        if head[1] - 1 >= 0 and head[0] + 1 <= height-1 and matrix[head[0] + 1][head[1] - 1] == 4:
-            #avoid.append("left")
-            #avoid.append("down")
+        if head[1] - 1 >= 0 and head[0] + 1 <= height - 1 and matrix[head[0] + 1][head[1] - 1] == 4:
+            # avoid.append("left")
+            # avoid.append("down")
             avoid.append("right")
             avoid.append("up")
         if head[1] + 1 <= width - 1 and head[0] + 1 <= height - 1 and matrix[head[0] + 1][head[1] + 1] == 4:
-            #avoid.append("right")
-            #avoid.append("down")
+            # avoid.append("right")
+            # avoid.append("down")
             avoid.append("left")
             avoid.append("up")
-        #debug
+        # debug
         print("Avoid: ", avoid)
 
         combined_move = list(set(possible_moves) & set(priority_moves))
@@ -98,7 +93,7 @@ class Battlesnake(object):
         if (len(list(set(combined_move) & set(avoid))) > 0):  # then
             combined_move = list(set(combined_move) & set(avoid))
 
-        #avoid eating food when health > 50
+        # avoid eating food when health > 50
         if len(combined_move) > 1:  # at least we have two choice.
             print("combined move in avoid eating food: ", combined_move, "len: ", len(combined_move))
             for i in range(len(combined_move)):
@@ -125,87 +120,86 @@ class Battlesnake(object):
                         print("call combined_move remove left")
                         break
             print("combined move in avoid eating food(after): ", combined_move)
-        # choose the best move from combined_move
-        number_of_0 = 0
-        for row in range(height//2):
-            for col in range(width//2): #Upper left
-                if(matrix[row][col] not in [1,4] ):
-                    number_of_0 +=1
-        ratio1 = number_of_0/((height//2)*(width//2))
 
-        number_of_0 = 0
-        for row in range(height//2):
-            for col in range(width//2, width): #Upper right
-                if(matrix[row][col] not in [1,4] ):
-                    number_of_0 +=1
-        ratio2 = number_of_0/( (height//2)* (width - width//2))
+        ####Prob start####
+        if flag == 1:
+            # choose the best move from combined_move
+            number_of_0 = 0
+            for row in range(height // 2):
+                for col in range(width // 2):  # Upper left
+                    if (matrix[row][col] not in [1, 4]):
+                        number_of_0 += 1
+            ratio1 = number_of_0 / ((height // 2) * (width // 2))
 
+            number_of_0 = 0
+            for row in range(height // 2):
+                for col in range(width // 2, width):  # Upper right
+                    if (matrix[row][col] not in [1, 4]):
+                        number_of_0 += 1
+            ratio2 = number_of_0 / ((height // 2) * (width - width // 2))
 
-        number_of_0 = 0
-        for row in range(height//2, height):
-            for col in range(width//2): #Lower left
-                if(matrix[row][col] not in [1,4] ):
-                    number_of_0 +=1
-        ratio3 = number_of_0/( (height - height//2)*(width//2))
+            number_of_0 = 0
+            for row in range(height // 2, height):
+                for col in range(width // 2):  # Lower left
+                    if (matrix[row][col] not in [1, 4]):
+                        number_of_0 += 1
+            ratio3 = number_of_0 / ((height - height // 2) * (width // 2))
 
+            number_of_0 = 0
+            for row in range(height // 2, height):
+                for col in range(width // 2, width):  # Lower right
+                    if (matrix[row][col] not in [1, 4]):
+                        number_of_0 += 1
+            ratio4 = number_of_0 / ((height - height // 2) * (width - width // 2))
 
-        number_of_0 = 0
-        for row in range(height//2, height):
-            for col in range(width//2, width): #Lower right
-                if(matrix[row][col] not in [1,4] ):
-                    number_of_0 +=1
-        ratio4 = number_of_0/( (height - height//2)* (width - width//2) )
-        
-        list_ratio=[ratio1, ratio2, ratio3, ratio4]
-        list_ratio.sort()
+            list_ratio = [ratio1, ratio2, ratio3, ratio4]
+            list_ratio.sort()
 
-        #debug
-        best_cordinate = (0,0)
-        if(max(list_ratio)==ratio1):
-            print("best ratio is:", "ratio1")
-            best_cordinate = (0,0)
-        elif(max(list_ratio)==ratio2):
-            print("best ratio is:", "ratio2")
-            best_cordinate = (0, width-1)
-        elif(max(list_ratio)==ratio3):
-            print("best ratio is:", "ratio3")
-            best_cordinate = (height-1,0)
+            # debug
+            best_cordinate = (0, 0)
+            if (max(list_ratio) == ratio1):
+                print("best ratio is:", "ratio1")
+                best_cordinate = (0, 0)
+            elif (max(list_ratio) == ratio2):
+                print("best ratio is:", "ratio2")
+                best_cordinate = (0, width - 1)
+            elif (max(list_ratio) == ratio3):
+                print("best ratio is:", "ratio3")
+                best_cordinate = (height - 1, 0)
+            else:
+                print("best ratio is:", "ratio4")
+                best_cordinate = (height - 1, width - 1)
+
+            # compute distance of each possible moves?
+            # From combined_move, We want corner_dist =[left:1000, right:1000]
+            corner_dist = [100] * len(combined_move)  # between each combined_move
+
+            for i in range(len(combined_move)):
+                if (combined_move[i] == "right"):  # head[1] is width
+                    corner_dist[i] = abs(best_cordinate[1] - (head[1] + 1)) + abs(best_cordinate[0] - (head[0]))
+                elif (combined_move[i] == "left"):  # head[1] is width
+                    corner_dist[i] = abs(best_cordinate[1] - (head[1] - 1)) + abs(best_cordinate[0] - (head[0]))
+                elif (combined_move[i] == "up"):  # head[0] is height
+                    corner_dist[i] = abs(best_cordinate[1] - (head[1])) + abs(best_cordinate[0] - (head[0] - 1))
+                elif (combined_move[i] == "down"):  # head[0] is height
+                    corner_dist[i] = abs(best_cordinate[1] - (head[1])) + abs(best_cordinate[0] - (head[0] + 1))
+            # find shortest
+            min = 100
+            min_move = ""
+            for i in range(len(combined_move)):
+                if min > corner_dist[i]:
+                    # corner_dist and combined_move have same order
+                    min = corner_dist[i]
+                    min_move = combined_move[i]
+
+            # debug
+            print("combined_move=", combined_move)
+            print("corner_dist=", corner_dist)
+
+            move = min_move
+        ################End of Prob########
         else:
-            print("best ratio is:", "ratio4")
-            best_cordinate = (height-1,width-1)
-
-
-
-        #compute distance of each possible moves?
-        # From combined_move, We want corner_dist =[left:1000, right:1000]
-        corner_dist = [100]*len(combined_move) #between each combined_move
-
-        for i in range(len(combined_move)):
-            if(combined_move[i]=="right"): #head[1] is width
-                corner_dist[i] = abs(best_cordinate[1] - (head[1]+1)) + abs(best_cordinate[0] - (head[0]) )
-            elif(combined_move[i]=="left"): #head[1] is width
-                corner_dist[i] = abs(best_cordinate[1] - (head[1]-1)) + abs(best_cordinate[0] - (head[0]) )
-            elif(combined_move[i]=="up"): #head[0] is height
-                corner_dist[i] = abs(best_cordinate[1] - (head[1])) + abs(best_cordinate[0] - (head[0]-1) )
-            elif(combined_move[i]=="down"): #head[0] is height
-                corner_dist[i] = abs(best_cordinate[1] - (head[1])) + abs(best_cordinate[0] - (head[0]+1) )
-        #find shortest
-        min=100
-        min_move=""
-        for i in range(len(combined_move)):
-            if min > corner_dist[i]:
-                # corner_dist and combined_move have same order
-                min = corner_dist[i]
-                min_move = combined_move[i]
-
-        #debug
-        print("combined_move=",combined_move)
-        print("corner_dist=",corner_dist)
-
-        move = min_move
-        
-        
-
+            move = combined_move
         return move
 
     # ---------------------------------------------------------------------
@@ -214,7 +208,7 @@ class Battlesnake(object):
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
     def move(self, possible_move=None):
-        
+
         # This function is called on every turn of a game. It's how your snake decides where to move.
         # Valid moves are "up", "down", "left", or "right".
         # TODO: Use the information in cherrypy.request.json to decide your next move.
@@ -225,10 +219,9 @@ class Battlesnake(object):
         # move = random.choice(possible_moves)
 
         # add my code--------------------------------------------
-        #debug (delete later)
+        # debug (delete later)
         print("turn: ", data["turn"])
-        
-        
+
         start_time = time.time()
 
         # board info
@@ -264,9 +257,9 @@ class Battlesnake(object):
                 if j == 0 and my_size <= size:  # j == 0 means head
                     matrix[y][x] = 4
 
-                elif j==0 and my_size > size: # j == 0 means head
+                elif j == 0 and my_size > size:  # j == 0 means head
                     matrix[y][x] = 5
-                
+
 
                 else:
                     if data["turn"] > 0:
@@ -311,14 +304,11 @@ class Battlesnake(object):
         for line in matrix:
             print(line)
 
-
         if load_factor == 1:
 
             possible_moves = []
 
-            
-            if head[0] - 1 >= 0 and matrix[head[0]-1][head[1]] not in [1,4]:
-
+            if head[0] - 1 >= 0 and matrix[head[0] - 1][head[1]] not in [1, 4]:
                 possible_moves.append("up")
 
             if head[0] + 1 <= height - 1 and matrix[head[0] + 1][head[1]] not in [1, 4]:
@@ -331,21 +321,37 @@ class Battlesnake(object):
                 possible_moves.append("right")
             print("possible_moves=", possible_moves)
 
-
             if head[1] < food[0][1] and (matrix[head[0]][head[1] + 1] != 1):  # that means head is left side of food.
                 movement = "right"
-                #move = self.priority(matrix, head, possible_moves, height, width)
-                #if movement in move:
-                 #   move = movement
+                move = self.priority(matrix, head, possible_moves, height, width, load_factor)
+                if movement in move:
+                    move = movement
+                else:
+                    move = random.choice(move)
 
             elif head[1] > food[0][1] and (matrix[head[0]][head[1] - 1] != 1):  # that means head is left side of food.
-                move = "left"
-            else:  # that means head and food are in the same column!
+                movement = "left"
+                move = self.priority(matrix, head, possible_moves, height, width, load_factor)
+                if movement in move:
+                    move = movement
+                else:
+                    move = random.choice(move)
 
+            else:  # that means head and food are in the same column!
                 if head[0] < food[0][0] and (matrix[head[0] + 1][head[1]] != 1):  # that means hard is above the food.
-                    move = "down"
+                    movement = "down"
+                    move = self.priority(matrix, head, possible_moves, height, width, load_factor)
+                    if movement in move:
+                        move = movement
+                    else:
+                        move = random.choice(move)
                 elif head[0] > food[0][0] and (matrix[head[0] - 1][head[1]] != 1):  # that means hard is below the food.
-                    move = "up"
+                    movement = "up"
+                    move = self.priority(matrix, head, possible_moves, height, width, load_factor)
+                    if movement in move:
+                        move = movement
+                    else:
+                        move = random.choice(move)
                 else:
                     possible_moves = []
                     if matrix[head[0]][head[1] + 1] not in [1, 4] and head[1] + 1 != width:
@@ -356,17 +362,15 @@ class Battlesnake(object):
                         possible_moves.append("down")
                     if matrix[head[0] - 1][head[1]] not in [1, 4] and head[0] - 1 >= 0:
                         possible_moves.append("up")
-                    #move = random.choice(possible_moves)
+                    # move = random.choice(possible_moves)
                     if len(possible_moves) > 0:
-                        move = self.priority(matrix, head, possible_moves, height, width)
-                    
+                        move = self.priority(matrix, head, possible_moves, height, width, load_factor)
+
         elif load_factor == 0:
             print("head[0]: ", head[0], "head[1]: ", head[1])
             possible_moves = []
 
-            
-            if head[0] - 1 >= 0 and matrix[head[0]-1][head[1]] not in [1,4]:
-
+            if head[0] - 1 >= 0 and matrix[head[0] - 1][head[1]] not in [1, 4]:
                 possible_moves.append("up")
 
             if head[0] + 1 <= height - 1 and matrix[head[0] + 1][head[1]] not in [1, 4]:
@@ -379,12 +383,7 @@ class Battlesnake(object):
                 possible_moves.append("right")
             print("possible_moves=", possible_moves)
 
-
-            move = self.priority(matrix, head, possible_moves, height, width)
-
-
-
-        
+            move = self.priority(matrix, head, possible_moves, height, width, load_factor)
 
         print("--- %s seconds ---" % (time.time() - start_time))
         # end of my code--------------------------------------------
